@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  passenger: one
+  source: one
+  destination: one
+  departure_t: 2018-11-27 19:43:33
+
+two:
+  passenger: two
+  source: two
+  destination: two
+  departure_t: 2018-11-27 19:43:33

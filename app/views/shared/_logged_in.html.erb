@@ -1,0 +1,5 @@
+<% if current_user.driver? %>
+  <%= render 'shared/driver_home' %>
+<% else %>
+  <%= render 'shared/passenger_home' %>
+<% end %>

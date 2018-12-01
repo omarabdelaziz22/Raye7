@@ -1,0 +1,13 @@
+<li id="pickup-<%= pickup.id %>">
+  <span class="content">
+    <%= pickup.source %>
+    <%= pickup.destination %>
+    <%= pickup.departure_t %>
+  </span>
+  <span class="timestamp">
+    Created <%= time_ago_in_words(pickup.created_at) %> ago.
+      <%= link_to "delete", pickup, method: :delete,
+                                       data: { confirm: "You sure?" } %>
+    <% end %>
+  </span>
+</li>

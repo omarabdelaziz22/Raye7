@@ -10,10 +10,45 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_26_202357) do
+ActiveRecord::Schema.define(version: 2018_11_27_174333) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "pickups", force: :cascade do |t|
+    t.bigint "passenger_id"
+    t.bigint "source_id"
+    t.bigint "destination_id"
+    t.datetime "departure_t"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["destination_id"], name: "index_pickups_on_destination_id"
+    t.index ["passenger_id"], name: "index_pickups_on_passenger_id"
+    t.index ["source_id"], name: "index_pickups_on_source_id"
+  end
+
+  create_table "places", force: :cascade do |t|
+    t.string "name"
+    t.string "longitude"
+    t.string "latitude"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["longitude", "latitude"], name: "index_places_on_longitude_and_latitude", unique: true
+    t.index ["name"], name: "index_places_on_name", unique: true
+  end
+
+  create_table "trips", force: :cascade do |t|
+    t.bigint "driver_id"
+    t.bigint "source_id"
+    t.bigint "destination_id"
+    t.datetime "departure_t"
+    t.integer "seats"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["destination_id"], name: "index_trips_on_destination_id"
+    t.index ["driver_id"], name: "index_trips_on_driver_id"
+    t.index ["source_id"], name: "index_trips_on_source_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -27,7 +62,14 @@ ActiveRecord::Schema.define(version: 2018_11_26_202357) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["phone"], name: "index_users_on_phone", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "pickups", "places", column: "destination_id"
+  add_foreign_key "pickups", "places", column: "source_id"
+  add_foreign_key "pickups", "users", column: "passenger_id"
+  add_foreign_key "trips", "places", column: "destination_id"
+  add_foreign_key "trips", "places", column: "source_id"
+  add_foreign_key "trips", "users", column: "driver_id"
 end

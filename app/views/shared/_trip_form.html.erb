@@ -1,0 +1,20 @@
+<%= form_for(@trip) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+    <%= f.fields_for :source do |s| %>
+      Soucre: <%= s.text_field :name, placeholder: "Source" %>
+    <% end %>
+  </div>
+  <div class="field">
+    <%= f.fields_for :destination do |d| %>
+      Destination: <%= d.text_field :name, placeholder: "Destination" %>
+    <% end %>
+  </div>
+  <div class="field">
+    Departure time: <%= f.datetime_select :departure_t, :ampm => true, :minute_step => 15 %>
+  </div>
+  <div class="field">
+  Number of seats: <%= f.number_field :seats, placeholder: "Seats" %>
+  </div>
+  <%= f.submit "Post", class: "btn btn-primary" %>
+<% end %>

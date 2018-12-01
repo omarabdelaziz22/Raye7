@@ -1,0 +1,20 @@
+<div class="row">
+  <aside class="col-md-4">
+    <section class="user_info">
+      <%= render 'shared/user_info' %>
+    </section>
+    <section class="passenger_form">
+      <%= render 'shared/pickup_form' %>
+    </section>
+  </aside>
+  <div class="col-md-8">
+        <% if @feed_pickup.any? %>
+          <h3>Pickups Feed</h3>
+          <ol class="pickups">
+            <%= render @feed_pickup %>
+          </ol>
+            <%= will_paginate @feed_pickup %>
+        <% end %>
+  </div>
+  <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
+</div>

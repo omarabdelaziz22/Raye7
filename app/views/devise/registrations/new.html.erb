@@ -4,9 +4,25 @@
   <%= devise_error_messages! %>
 
   <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :phone %><br />
+    <%= f.telephone_field :phone, placeholder: "Ex: +201119999999" %>
+  </div>
+
+  <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
+
+  <div class="field">
+    <%= f.label :role %><br />
+    <%= f.select :role, options_for_select(%w[Driver Passenger]) %>
+  </div>
+
 
   <div class="field">
     <%= f.label :password %>

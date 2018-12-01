@@ -1,0 +1,20 @@
+<div class="row">
+  <aside class="col-md-4">
+    <section class="user_info">
+      <%= render 'shared/user_info' %>
+    </section>
+    <section class="trip_form">
+      <%= render 'shared/trip_form' %>
+    </section>
+  </aside>
+  <div class="col-md-8">
+        <% if @feed_trip.any? %>
+          <h3>Trips Feed</h3>
+          <ol class="trips">
+            <%= render @feed_trip %>
+          </ol>
+            <%= will_paginate @feed_trip %>
+        <% end %>
+  </div>
+  <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
+</div>

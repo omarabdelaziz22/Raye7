@@ -1,0 +1,13 @@
+<li id="trip-<%= trip.id %>">
+  <span class="content">
+    <%= trip.source.name %>
+    <%= trip.destination.name %>
+    <%= trip.departure_t %>
+    <%= trip.seats %>
+  </span>
+  <span class="timestamp">
+    Created <%= time_ago_in_words(trip.created_at) %> ago.
+      <%= link_to "delete", trip, method: :delete,
+                                       data: { confirm: "You sure?" } %>
+  </span>
+</li>
