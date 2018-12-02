@@ -10,8 +10,8 @@ class Trip < ApplicationRecord
   validate :departure_date_cannot_be_in_the_past
   validates_numericality_of :seats, only_integer: true, greater_than_or_equal_to: 3
 
-  accepts_nested_attributes_for :source
-  accepts_nested_attributes_for :destination
+  accepts_nested_attributes_for :source, update_only: true
+  accepts_nested_attributes_for :destination, update_only: true
 
   def departure_date_cannot_be_in_the_past
     errors.add(:base, "Departure time can't be in the past") if

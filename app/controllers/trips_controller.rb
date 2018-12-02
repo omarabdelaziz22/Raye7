@@ -5,7 +5,7 @@ class TripsController < ApplicationController
     if @trip.save
       flash[:success] = "Trip created!"
       @feed_trip = current_user.trips.paginate(page: params[:page])
-      @feed_pickup = current_user.pickups #paginate(page: params[:page])
+      @feed_pickup = current_user.pickups
       redirect_to root_url
     else
       @feed_trip = []

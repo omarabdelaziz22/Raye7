@@ -2,16 +2,16 @@
   <%= render 'shared/error_messages', object: f.object %>
   <div class="field">
     <%= f.fields_for :source do |s| %>
-      <%= s.text_field :name, placeholder: "Source" %>
+      Soucre: <%= s.text_field :name, placeholder: "Source" %>
     <% end %>
   </div>
   <div class="field">
     <%= f.fields_for :destination do |d| %>
-      <%= d.text_field :name, placeholder: "Destination" %>
+      Destination: <%= d.text_field :name, placeholder: "Destination" %>
     <% end %>
   </div>
   <div class="field">
-    <%= f.time_field :departure_t, placeholder: "Departure time" %>
+    Departure time: <%= f.datetime_select :departure_t, :ampm => true, :minute_step => 15 %>
   </div>
   <%= f.submit "Post", class: "btn btn-primary" %>
 <% end %>

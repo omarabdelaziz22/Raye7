@@ -1,8 +1,8 @@
 class PickupsController < ApplicationController
-  before_action :authenticate_user!
-  before_action :correct_user,   only: :destroy
+  before_action :authenticate_user!, only: [:create, :destroy]
+
   def create
-    @pickup = current_user.pickups.new trip_params
+    @pickup = current_user.pickups.new pickup_params
     if @pickup.save
       flash[:success] = "Pickup created!"
       @feed_pickup = current_user.pickups.paginate(page: params[:page])
@@ -22,8 +22,9 @@ class PickupsController < ApplicationController
   end
 
   private
-
     def pickup_params
-      params.require(:pickup).permit(:driver, :source, :destination, :departure_t)
+      params.require(:pickup).permit( :passenger, :departure_t,
+                                    source_attributes: [ :name ],
+                                    destination_attributes: [ :name ])
     end
 end

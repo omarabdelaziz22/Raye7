@@ -1,9 +1,9 @@
 <li id="trip-<%= trip.id %>">
   <span class="content">
-    <%= trip.source.name %>
-    <%= trip.destination.name %>
-    <%= trip.departure_t %>
-    <%= trip.seats %>
+    Source: <%= trip.source.name %>,
+    Destination: <%= trip.destination.name %>,
+    Departure Time: <%= trip.departure_t %>,
+    Number of seats: <%= trip.seats %>,
   </span>
   <span class="timestamp">
     Created <%= time_ago_in_words(trip.created_at) %> ago.

@@ -1,8 +1,9 @@
 class Place < ApplicationRecord
-  before_save :search_coordinates, only: :create
-  validates :name, presence: true, length: { maximum: 20 }
-  validates :latitude, uniqueness: {scope: :longitude}
+  before_validation :search_coordinates
 
+  validates :name, presence: true, length: { maximum: 20 }
+  validates :longitude, :latitude, presence: true
+  validates :latitude, uniqueness: {scope: :longitude}
 
   private
 
